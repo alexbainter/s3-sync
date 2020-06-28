@@ -1,12 +1,14 @@
 {
-  "name": "@metalex9/s3-deploy",
+  "name": "@alexbainter/s3-sync",
   "version": "0.0.0",
-  "description": "A script for deploying web apps to S3",
-  "main": "index.js",
+  "description": "Transfer files to and from S3",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "mocha lib --recursive",
     "test:watch": "npm test -- --watch",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "preversion": "npm run lint && npm test",
+    "postverison": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

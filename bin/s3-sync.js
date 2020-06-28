@@ -15,7 +15,7 @@ const program = yargs
     {
       bucket: {
         descrption:
-          'The name of the bucket to push to (must have write access)',
+          'The name of the bucket to upload to (requires read and write access)',
         type: 'string',
         requiresArg: true,
         nargs: 1,
@@ -32,7 +32,7 @@ const program = yargs
       },
       distributionId: {
         description:
-          '(Optional) The ID of a CloudFront distribution to invalidate ',
+          '(Optional) The ID of a CloudFront distribution to invalidate',
         type: 'string',
         requiresArgs: true,
         nargs: 1,
@@ -55,7 +55,8 @@ const program = yargs
         default: ['css', 'js', 'html', 'png', 'json', 'xml', 'webapp'],
       },
       dryRun: {
-        description: "(Optional) Don't actually push any files",
+        description:
+          '(Optional) Run command without uploading any files or invalidating a cache',
         type: 'boolean',
         default: false,
       },
@@ -63,7 +64,8 @@ const program = yargs
   )
   .command('pull', 'Download remote files to local file system', {
     bucket: {
-      descrption: 'The name of the bucket to push to (must have read access)',
+      descrption:
+        'The name of the bucket to download from (requires read access)',
       type: 'string',
       requiresArg: true,
       nargs: 1,
@@ -71,7 +73,7 @@ const program = yargs
     },
     directory: {
       alias: 'dir',
-      descrption: 'The local directory containing files to upload',
+      descrption: 'The local directory to download files to',
       type: 'string',
       requiresArg: true,
       nargs: 1,
@@ -87,7 +89,7 @@ const program = yargs
       default: ['index.html'],
     },
     dryRun: {
-      description: "(Optional) Don't actually push any files",
+      description: '(Optional) Run command without downloading any files',
       type: 'boolean',
       default: false,
     },

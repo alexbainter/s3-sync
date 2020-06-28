@@ -8,7 +8,7 @@
     "test:watch": "npm test -- --watch",
     "lint": "eslint .",
     "preversion": "npm run lint && npm test",
-    "postverison": "git push && git push --tags"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

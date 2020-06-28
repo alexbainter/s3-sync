@@ -20,6 +20,13 @@
   "engines": {
     "node": ">=12"
   },
+  "bin": {
+    "s3": "./bin/s3.js"
+  },
+  "files": [
+    "bin",
+    "lib/**/!(*.spec).js"
+  ],
   "dependencies": {
     "aws-sdk": "^2.706.0",
     "cli-progress": "^3.8.2",

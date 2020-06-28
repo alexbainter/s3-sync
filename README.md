@@ -1,4 +1,4 @@
-# s3-sync
+# @alexbainter/s3-sync
 
 Transfer files to and from S3.
 

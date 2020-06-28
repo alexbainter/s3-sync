@@ -54,6 +54,11 @@ const program = yargs
         nargs: 1,
         default: ['css', 'js', 'html', 'png', 'json', 'xml', 'webapp'],
       },
+      dryRun: {
+        description: "(Optional) Don't actually push any files",
+        type: 'boolean',
+        default: false,
+      },
     }
   )
   .command('pull', 'Download remote files to local file system', {
@@ -81,6 +86,11 @@ const program = yargs
       nargs: 1,
       default: ['index.html'],
     },
+    dryRun: {
+      description: "(Optional) Don't actually push any files",
+      type: 'boolean',
+      default: false,
+    },
   })
   .help()
   .demandCommand(1, 'Please choose a command')
@@ -93,6 +103,7 @@ const {
   distributionId,
   mutableFilenames,
   compressExtensions,
+  dryRun,
   _,
 } = program.argv;
 const [command] = _;
@@ -101,6 +112,7 @@ if (command === 'deploy') {
   deploy({
     mutableFilenames,
     compressExtensions,
+    dryRun,
     s3: createS3(bucket),
     distDir: directory,
     cloudFront: distributionId && createCloudFront(distributionId),
@@ -115,6 +127,7 @@ if (command === 'deploy') {
 } else if (command === 'pull') {
   pull({
     mutableFilenames,
+    dryRun,
     s3: createS3(bucket),
     distDir: directory,
   })

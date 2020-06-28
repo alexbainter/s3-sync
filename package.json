@@ -22,7 +22,7 @@
     "node": ">=12"
   },
   "bin": {
-    "s3": "./bin/s3.js"
+    "s3-sync": "./bin/s3-sync.js"
   },
   "files": [
     "bin",

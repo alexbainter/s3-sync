@@ -92,6 +92,7 @@ const program = yargs
       default: false,
     },
   })
+  .env('S3_SYNC')
   .help()
   .demandCommand(1, 'Please choose a command')
   .scriptName('s3')

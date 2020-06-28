@@ -98,12 +98,12 @@ const {
 const [command] = _;
 
 if (command === 'deploy') {
-  return deploy({
-    distributionId,
+  deploy({
     mutableFilenames,
     compressExtensions,
     s3: createS3(bucket),
     distDir: directory,
+    cloudFront: distributionId && createCloudFront(distributionId),
   })
     .then(() => {
       console.log('Deploy completed successfully');
@@ -113,7 +113,7 @@ if (command === 'deploy') {
       console.error('Deploy failed');
     });
 } else if (command === 'pull') {
-  return pull({
+  pull({
     mutableFilenames,
     s3: createS3(bucket),
     distDir: directory,

@@ -85,3 +85,15 @@ Run command without downloading any files.
 
 - CLI: `--dryRun`,
 - Environment variable: `S3_SYNC_DRY_RUN=<true/false>`
+
+## AWS authentication
+
+See [Setting Credentials is Node.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) from AWS for all authentication options.
+
+### Environment variables
+
+- `AWS_ACCESS_KEY_ID=<access key id>`
+- `AWS_SECRET_ACCESS_KEY=<secret access key>`
+
+See [Loading Credentials in Node.js from Environment Variables
+](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-environment.html) from AWS for more information.

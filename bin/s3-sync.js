@@ -124,8 +124,8 @@ if (command === 'deploy') {
       console.log('Deploy completed successfully');
     })
     .catch((err) => {
-      console.error(err);
       console.error('Deploy failed');
+      throw err;
     });
 } else if (command === 'pull') {
   pull({
@@ -138,7 +138,7 @@ if (command === 'deploy') {
       console.log('Pull completed successfully');
     })
     .catch((err) => {
-      console.error(err);
       console.error('Pull failed');
+      throw err;
     });
 }

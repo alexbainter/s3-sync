@@ -97,7 +97,7 @@ const program = yargs
   .env('S3_SYNC')
   .help()
   .demandCommand(1, 'Please choose a command')
-  .scriptName('s3')
+  .scriptName('s3');
 
 const {
   bucket,
@@ -121,7 +121,7 @@ if (command === 'deploy') {
   })
     .then(() => {
       console.log('Deploy completed successfully');
-    })&& rm -rf ./prerendered-samples
+    })
     .catch((err) => {
       console.error('Deploy failed');
       throw err;

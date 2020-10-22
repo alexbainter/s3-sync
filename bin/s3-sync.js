@@ -5,6 +5,7 @@
 const yargs = require('yargs');
 const deploy = require('../lib/deploy/deploy');
 const pull = require('../lib/pull/pull');
+const pruneRemote = require('../lib/prune/prune-remote');
 const createS3 = require('../lib/create-s3');
 const createCloudFront = require('../lib/create-cloud-front');
 
@@ -94,6 +95,51 @@ const program = yargs
       default: false,
     },
   })
+  .command(
+    'prune <target>',
+    'Remove immutable files which only exist on the target',
+    (commandYargs) => {
+      const options = {
+        bucket: {
+          descrption:
+            'The name of the bucket to download from (requires read access)',
+          type: 'string',
+          requiresArg: true,
+          nargs: 1,
+          demand: true,
+        },
+        directory: {
+          alias: 'dir',
+          descrption: 'The local directory to download files to',
+          type: 'string',
+          requiresArg: true,
+          nargs: 1,
+          demand: true,
+          default: 'dist',
+        },
+        mutableFilenames: {
+          alias: 'mutables',
+          description:
+            '(Optional) A list of filenames whose content may change',
+          type: 'array',
+          requiresArg: true,
+          nargs: 1,
+          default: ['index.html'],
+        },
+        dryRun: {
+          description: '(Optional) Run command without downloading any files',
+          type: 'boolean',
+          default: false,
+        },
+      };
+      Object.keys(options).forEach((optionName) => {
+        commandYargs.option(optionName, options[optionName]);
+      });
+      commandYargs.positional('target', {
+        choices: ['remote', 'local'],
+      });
+    }
+  )
   .env('S3_SYNC')
   .help()
   .demandCommand(1, 'Please choose a command')
@@ -106,6 +152,7 @@ const {
   mutableFilenames,
   compressExtensions,
   dryRun,
+  target,
   _,
 } = program.argv;
 const [command] = _;
@@ -140,4 +187,15 @@ if (command === 'deploy') {
       console.error('Pull failed');
       throw err;
     });
+} else if (command === 'prune') {
+  if (target === 'local') {
+    console.log('prune local is not available yet');
+  } else if (target === 'remote') {
+    pruneRemote({
+      mutableFilenames,
+      dryRun,
+      s3: createS3(bucket),
+      distDir: directory,
+    });
+  }
 }

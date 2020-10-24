@@ -140,6 +140,29 @@ const program = yargs
       });
     }
   )
+  .command(
+    'diff',
+    "Show files which aren't shared between the bucket and local directory",
+    {
+      bucket: {
+        descrption:
+          'The name of the bucket to download from (requires read access)',
+        type: 'string',
+        requiresArg: true,
+        nargs: 1,
+        demand: true,
+      },
+      directory: {
+        alias: 'dir',
+        descrption: 'The local directory to download files to',
+        type: 'string',
+        requiresArg: true,
+        nargs: 1,
+        demand: true,
+        default: 'dist',
+      },
+    }
+  )
   .env('S3_SYNC')
   .help()
   .demandCommand(1, 'Please choose a command')

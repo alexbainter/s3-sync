@@ -43,7 +43,6 @@ const program = yargs
         description: '(Optional) A list of filenames whose content may change',
         type: 'array',
         requiresArg: true,
-        nargs: 1,
         default: ['index.html'],
       },
       compressExtensions: {
@@ -52,7 +51,6 @@ const program = yargs
           '(Optional) A list of file extension which should be compressed before upload',
         type: 'array',
         requiresArg: true,
-        nargs: 1,
         default: ['css', 'js', 'html', 'png', 'json', 'xml', 'webapp'],
       },
       dryRun: {
@@ -86,7 +84,6 @@ const program = yargs
       description: '(Optional) A list of filenames whose content may change',
       type: 'array',
       requiresArg: true,
-      nargs: 1,
       default: ['index.html'],
     },
     dryRun: {
@@ -123,7 +120,6 @@ const program = yargs
             '(Optional) A list of filenames whose content may change',
           type: 'array',
           requiresArg: true,
-          nargs: 1,
           default: ['index.html'],
         },
         dryRun: {

@@ -43,7 +43,7 @@ const program = yargs
         description: '(Optional) A list of filenames whose content may change',
         type: 'array',
         requiresArg: true,
-        default: ['index.html'],
+        default: ['index.html', 'sw.js'],
       },
       compressExtensions: {
         alias: 'compress',
@@ -51,13 +51,19 @@ const program = yargs
           '(Optional) A list of file extension which should be compressed before upload',
         type: 'array',
         requiresArg: true,
-        default: ['css', 'js', 'html', 'png', 'json', 'xml', 'webapp'],
+        default: ['css', 'js', 'html', 'png', 'json', 'xml', 'webapp', 'ico'],
       },
       dryRun: {
         description:
           '(Optional) Run command without uploading any files or invalidating a cache',
         type: 'boolean',
         default: false,
+      },
+      pageNames: {
+        description: '(Optional) A list of HTML files',
+        type: 'array',
+        requiresArg: true,
+        default: [],
       },
     }
   )
@@ -84,7 +90,7 @@ const program = yargs
       description: '(Optional) A list of filenames whose content may change',
       type: 'array',
       requiresArg: true,
-      default: ['index.html'],
+      default: ['index.html', 'sw.js'],
     },
     dryRun: {
       description: '(Optional) Run command without downloading any files',
@@ -120,7 +126,7 @@ const program = yargs
             '(Optional) A list of filenames whose content may change',
           type: 'array',
           requiresArg: true,
-          default: ['index.html'],
+          default: ['index.html', 'sw.js'],
         },
         dryRun: {
           description: '(Optional) Run command without downloading any files',
@@ -172,6 +178,7 @@ const {
   compressExtensions,
   dryRun,
   target,
+  pageNames,
   _,
 } = program.argv;
 const [command] = _;
@@ -181,6 +188,7 @@ if (command === 'deploy') {
     mutableFilenames,
     compressExtensions,
     dryRun,
+    pageNames,
     s3: createS3(bucket),
     distDir: directory,
     cloudFront: distributionId && createCloudFront(distributionId),

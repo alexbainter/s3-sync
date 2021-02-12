@@ -33,14 +33,14 @@ The ID of a CloudFront distribution to invalidate.
 
 ##### Mutable filenames (optional)
 
-A list of filenames whose content may change. Defaults to `index.html`.
+A list of filenames whose content may change. Defaults to `index.html sw.js`.
 
 - CLI: `--mutableFilenames <list of filenames>`, `--mutables <list of filenames>`
 - Environment variable: `S3_SYNC_MUTABLE_FILENAMES=<list of filenames>`
 
 ##### Compress Extensions (optional)
 
-A list of file extensions which should be compressed before upload. Defaults to `css,js,html,png,json.xml,webapp`.
+A list of file extensions which should be compressed before upload. Defaults to `css js html png json xml webapp ico`.
 
 - CLI: `--compressExtensions <list of extensions>, --compress <list of extensions>`
 - Environment variable: `S3_SYNC_COMPRESS_EXTENSIONS=<list of extensions>`
@@ -51,6 +51,13 @@ Run command without uploading any files or invalidating a cache.
 
 - CLI: `--dryRun`,
 - Environment variable: `S3_SYNC_DRY_RUN=<true/false>`
+
+##### Page Names (optional)
+
+A list of HTML files. Useful for vanity URLs like "example.com/my-page" instead of "example.com/my-page.html"
+
+- CLI: `--pageNames <list of page names>`,
+- Environment variable: `S3_SYNC_PAGE_NAMES=<list of page names>`
 
 ### `s3-sync pull`
 
@@ -74,7 +81,7 @@ The local directory to download files to. Defaults to `dist`.
 
 ##### Mutable filenames (optional)
 
-A list of filenames whose content may change. Defaults to `index.html`.
+A list of filenames whose content may change. Defaults to `index.html sw.js`.
 
 - CLI: `--mutableFilenames <list of filenames>`, `--mutables <list of filenames>`
 - Environment variable: `S3_SYNC_MUTABLE_FILENAMES=<list of filenames>`

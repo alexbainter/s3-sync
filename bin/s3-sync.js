@@ -53,17 +53,17 @@ const program = yargs
         requiresArg: true,
         default: ['css', 'js', 'html', 'png', 'json', 'xml', 'webapp', 'ico'],
       },
+      aliasHtmlPages: {
+        description:
+          '(Optional) Upload a copy of non-index HTML files without an extension, like "about" for "about.html"',
+        type: 'boolean',
+        default: true,
+      },
       dryRun: {
         description:
-          '(Optional) Run command without uploading any files or invalidating a cache',
+          '(Optional) Run command without actually uploading any files or invalidating a cache',
         type: 'boolean',
         default: false,
-      },
-      pageNames: {
-        description: '(Optional) A list of HTML files',
-        type: 'array',
-        requiresArg: true,
-        default: [],
       },
     }
   )
@@ -178,7 +178,7 @@ const {
   compressExtensions,
   dryRun,
   target,
-  pageNames,
+  aliasPages,
   _,
 } = program.argv;
 const [command] = _;
@@ -188,7 +188,7 @@ if (command === 'deploy') {
     mutableFilenames,
     compressExtensions,
     dryRun,
-    pageNames,
+    aliasPages,
     s3: createS3(bucket),
     distDir: directory,
     cloudFront: distributionId && createCloudFront(distributionId),

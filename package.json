@@ -42,7 +42,7 @@
     "eslint": "^7.3.1",
     "eslint-config-metalex9": "^0.4.0",
     "md5": "^2.2.1",
-    "mocha": "^8.0.1",
+    "mocha": "^10.2.0",
     "mock-fs": "^4.12.0",
     "prettier": "^2.0.5",
     "sinon": "^9.0.2"

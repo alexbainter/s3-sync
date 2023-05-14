@@ -44,6 +44,14 @@ A list of file extensions which should be compressed before upload. Defaults to 
 
 - CLI: `--compressExtensions <list of extensions>, --compress <list of extensions>`
 - Environment variable: `S3_SYNC_COMPRESS_EXTENSIONS=<list of extensions>`
+-
+
+##### Alias HTML Pages (optional)
+
+If enabled, uploads a copy of any non-index HTML file without its extension. For example, uploads a copy of `about.html` named `about`. Useful for vanity URLs like `example.com/about`. Defaults to `true`.
+
+- CLI: `--aliasHtmlPages`,
+- Environment variable: `S3_SYNC_ALIAS_HTML_PAGES=<true/false>`
 
 ##### Dry Run (optional)
 
@@ -51,13 +59,6 @@ Run command without uploading any files or invalidating a cache.
 
 - CLI: `--dryRun`,
 - Environment variable: `S3_SYNC_DRY_RUN=<true/false>`
-
-##### Page Names (optional)
-
-A list of HTML files. Useful for vanity URLs like "example.com/my-page" instead of "example.com/my-page.html"
-
-- CLI: `--pageNames <list of page names>`,
-- Environment variable: `S3_SYNC_PAGE_NAMES=<list of page names>`
 
 ### `s3-sync pull`
 

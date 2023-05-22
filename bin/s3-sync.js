@@ -45,6 +45,12 @@ const program = yargs
         requiresArg: true,
         default: ['index.html', 'sw.js'],
       },
+      mutableHtml: {
+        description:
+          '(Optional) Treat all HTML files as mutable, even if not specified by --mutableFilenames',
+        type: 'boolean',
+        default: true,
+      },
       compressExtensions: {
         alias: 'compress',
         description:
@@ -179,6 +185,7 @@ const {
   dryRun,
   target,
   aliasPages,
+  mutableHtml,
   _,
 } = program.argv;
 const [command] = _;
@@ -192,6 +199,7 @@ if (command === 'deploy') {
     s3: createS3(bucket),
     distDir: directory,
     cloudFront: distributionId && createCloudFront(distributionId),
+    mutableHtml,
   })
     .then(() => {
       console.log('Deploy completed successfully');

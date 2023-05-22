@@ -53,6 +53,13 @@ If enabled, uploads a copy of any non-index HTML file without its extension. For
 - CLI: `--aliasHtmlPages`,
 - Environment variable: `S3_SYNC_ALIAS_HTML_PAGES=<true/false>`
 
+##### Mutable HTML (optional)
+
+If enabled, treats all HTML files (and aliases, if applicable) as mutable. Defaults to `true`.
+
+- CLI: `--mutableHtml`,
+- Environment variable: `S3_SYNC_MUTABLE_HTML=<true/false>`
+
 ##### Dry Run (optional)
 
 Run command without uploading any files or invalidating a cache.
